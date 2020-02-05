@@ -41,13 +41,7 @@ public class SystemOrbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rotSpeed = 0;
-        } else if (Input.GetKeyUp(KeyCode.Space))
-        {
-            rotSpeed = speedCache;
-        }
+        SpeedControl();
 
         // memory leak?
         timer += Time.deltaTime * rotSpeed;
@@ -60,14 +54,32 @@ public class SystemOrbit : MonoBehaviour
         //Debug.Log(rotSpeed);
     }
 
-    void OnGUI()
+    private void SpeedControl()
     {
-        Event e = Event.current;
-        if (e.isKey)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Detected key code: " + e.keyCode);
+            rotSpeed = 0;
+        }
+        else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            rotSpeed = speedCache;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            rotSpeed = speedCache/2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            rotSpeed = speedCache;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            rotSpeed = speedCache*2;
         }
     }
+
+
 
     void Rotate()
     {

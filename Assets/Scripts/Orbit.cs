@@ -16,7 +16,7 @@ public class Orbit : MonoBehaviour
     void Start()
     {
         orbitPath = GetComponent<LineRenderer>();
-        orbitPath.loop = true;
+        //orbitPath.loop = true;
 
     }
 
